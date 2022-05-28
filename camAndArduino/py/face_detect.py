@@ -19,9 +19,10 @@ def main():
     mp_pose = mp.solutions.pose
     # For webcam input:
     cap = cv2.VideoCapture(0)
+    # cap = cv2.VideoCapture("./test.mp4")
     x0, y0 = 1, 1
-    com = "COM7"
-    ser = serial.Serial(com, 9600)
+    co = "COM4"
+    ser = serial.Serial(co, 9600)
     with mp_pose.Pose(
             min_detection_confidence=0.5,
             min_tracking_confidence=0.5) as pose:
@@ -30,7 +31,8 @@ def main():
             # Flip the image horizontally for a selfie-view display.
             image = cv2.flip(image, 1)
             h, w, c = image.shape
-            r = min(h, w)
+            # r = min(h, w)
+            r = 200
             xm, ym = w / 2, h / 2
             com = 'no'
             if not success:
@@ -61,7 +63,7 @@ def main():
                             else:
                                 com = "stop#"
                             ser.write(com.encode('utf-8'))
-
+                            print(com);
                             if y0 > ym:
                                 com = "up#"
                             elif y0 < ym:
@@ -69,7 +71,7 @@ def main():
                             else:
                                 com = "stop#"
                             ser.write(com.encode('utf-8'))
-                        print(x0, y0)
+                        # print(x0, y0)
             cv2.circle(image, (x0, y0), 50, (100, 200, 200), -1)
             cv2.imshow('MediaPipe Pose', image)
 

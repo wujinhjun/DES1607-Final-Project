@@ -13,8 +13,8 @@ def main():
     mp_drawing_styles = mp.solutions.drawing_styles
     mp_pose = mp.solutions.pose
     # For webcam input:
-    # cap = cv2.VideoCapture(0)
-    cap = cv2.VideoCapture('./test.mp4')
+    cap = cv2.VideoCapture(0)
+    # cap = cv2.VideoCapture('./test.mp4')
     x11, y11 = x13, y13 = 0, 0
     dist_last, dist_temp = 0, 0
     com = " "

@@ -1,0 +1,32 @@
+{
+  "configurations": [
+    {
+      "name": "Win32",
+      "includePath": [
+        "E:/arduinoIDE/Arduino/libraries",
+        "E:/arduinoIDE/Arduino/hardware/arduino/avr/**",
+        "E:/arduinoIDE/Arduino/hardware/tools/avr/avr/include",
+        "E:/arduinoIDE/Arduino/hardware/tools/avr/lib/gcc/avr/7.3.0/include",
+        "E:/arduinoIDE/Arduino/hardware/tools/avr/lib/gcc/avr/7.3.0/include-fixed",
+        "E:/arduinoIDE/Arduino/tools/**"
+        // "E:/arduinoIDE/Arduino/hardware/arduino/avr/libraries"
+      ],
+      "forcedInclude": [
+        "E:/arduinoIDE/Arduino/hardware/arduino/avr/cores/arduino/Arduino.h"
+      ],
+      // 装拓展的地方，arduinoIDE的安装路径下为从arduino官方提供的库，而导入的zip库则是来自于：用户/文档/arduino/libraries
+      "browse": {
+        "limitSymbolsToIncludedHeaders": true,
+        "path": [
+          "E:/arduinoIDE/Arduino/libraries",
+          "C:/Users/wujinhjun/Documents/Arduino/libraries"
+        ]
+      },
+      "intelliSenseMode": "msvc-x64",
+      "defines": [
+        "USBCON"
+      ]
+    }
+  ],
+  "version": 4
+}
