@@ -25,6 +25,7 @@ async def recv_msg(websocket):
     while True:
         recv_text = await websocket.recv()
         response_text = f"服务器收到: {recv_text}"
+        # 把信息发回
         await websocket.send(response_text)
 
 
