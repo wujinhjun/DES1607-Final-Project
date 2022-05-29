@@ -50,6 +50,7 @@ function displayWord(word) {
     console.log(`cx: ${coordsIndexes.length}`);
     // for (let ci of coordsIndexes) 
     // console.log(pg.pixels);
+
     for (let i = 0; i < coordsIndexes.length; i++) {
         let randomIndex = int(random(0, coordsIndexes.length));
         let coordIndex = coordsIndexes[randomIndex];
@@ -61,8 +62,8 @@ function displayWord(word) {
             // console.log(x);
             let y = coordIndex / width;
             // console.log(`x:${x} + y:${y}`);
-
             let newParticle = new Particle();
+
 
             // console.log(particleCount);
             if (particleIndex < particleCount) {
@@ -101,7 +102,7 @@ function displayWord(word) {
             p.kill();
         }
     }
-    updatePixels();
+    // updatePixels();
 }
 
 function setup() {
@@ -111,8 +112,8 @@ function setup() {
 
     words.push("hello world");
     words.push("Wujinhjun");
-    displayWord("hello");
-
+    displayWord(words[wordIndex]);
+    console.log(particles);
 }
 
 function draw() {

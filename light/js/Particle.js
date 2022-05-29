@@ -5,7 +5,7 @@ class Particle {
         this.acceleration = createVector(0, 0);
         this.target = createVector(0, 0);
 
-        this.closeEnoughTarget = 20;
+        this.closeEnoughTarget = 50;
         this.maxSpeed = 4;
         this.maxForce = 0.1;
         this.particleSize = 5;
@@ -22,6 +22,9 @@ class Particle {
         let distance = dist(this.location.x, this.location.y, this.target.x, this.target.y);
         if (distance < this.closeEnoughTarget) {
             proximityMult = distance / this.closeEnoughTarget;
+            if (proximityMult == 0) {
+                console.log("STOP");
+            }
         }
 
         let towardsTarget = createVector(this.target.x, this.target.y);
@@ -30,6 +33,7 @@ class Particle {
         towardsTarget.mult(this.maxSpeed * proximityMult);
 
         let steer = createVector(towardsTarget.x, towardsTarget.y);
+        steer.sub(this.velocity);
         steer.normalize();
         steer.mult(this.maxForce);
         this.acceleration.add(steer);
