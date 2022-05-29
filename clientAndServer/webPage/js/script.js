@@ -80,6 +80,3 @@ function controlMessage(message) {
 
 // WebSocketTest();
 webSocketTest();
-
-
-
