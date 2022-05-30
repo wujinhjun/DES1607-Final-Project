@@ -5,19 +5,35 @@ let pixelSteps = 9;
 let drawAsPoint = false;
 let words = [];
 let wordIndex = 0;
-let bgColor = color(220, 100);
+let bgColor = color(20, 100);
 let fontName = "Arial";
+let back = loadImage("./pic/back1.jpeg");
+// 打开一个 web socket
+const ws = new WebSocket("ws://localhost:5678");
 
 function setup() {
-    createCanvas(700, 300);
+    createCanvas(1200, 300);
     background(220);
 
-    words.push("hello world");
-    words.push("Wujinhjun");
+    words.push("东风夜放花千树");
+    words.push("更吹落 星如雨");
+    words.push("宝马雕车香满路");
+    words.push("凤箫声动");
+    words.push("玉壶光转");
+    words.push("一夜鱼龙舞");
+
+    words.push("蛾儿雪柳黄金缕");
+    words.push("笑语盈盈暗香去");
+    words.push("众里寻他千百度");
+    words.push("蓦然回首");
+    words.push("那人却在");
+    words.push("灯火阑珊处");
+
     displayWord(words[wordIndex]);
 }
 
 function draw() {
+    // background(back);
     fill(bgColor);
     noStroke();
     rect(0, 0, width, height);
@@ -32,6 +48,8 @@ function draw() {
             }
         }
     }
+    // receive();
+
 }
 
 function mouseClicked() {
@@ -44,4 +62,7 @@ function mouseClicked() {
         }
         displayWord(words[wordIndex]);
     }
+
 }
+
+// webSocketTest();

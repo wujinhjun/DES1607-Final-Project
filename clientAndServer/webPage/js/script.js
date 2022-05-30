@@ -34,8 +34,8 @@ function closeCon() {
 function webSocketTest() {
     if ("WebSocket" in window) {
 
-        // 连接建立后的回调函数
-        verify();
+        // // 连接建立后的回调函数
+        // verify();
 
         // 接收到服务器消息后的回调函数
         receive();

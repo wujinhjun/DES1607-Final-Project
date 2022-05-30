@@ -1,9 +1,3 @@
-# !/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import asyncio
 import json
 import os
@@ -29,6 +23,7 @@ async def check_permit(websocket):
         if cred_dict[0] == userName and cred_dict[1] == userPassword:
             response_str = "已连接到服务器\r\n可以开始发送信息"
             await websocket.send(response_str)
+            print(response_str)
             return True
         else:
             response_str = "认证失败"

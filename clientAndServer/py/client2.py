@@ -6,22 +6,11 @@ import websockets
 # 向服务器端认证，用户名密码通过才能退出循环
 async def auth_system(websocket):
     while True:
-        # cred_text = input("please enter your username and password: ")
-        # cred_text = "pyClient1:123456"
-        cred_text = "client_1"
+        cred_text = input("please enter your username and password: ")
         await websocket.send(cred_text)
         response_str = await websocket.recv()
         if "congratulation" in response_str:
-            print(response_str)
             return True
-
-
-# async def auth_system(websocket):
-#     cred_text = "client_1"
-#     await websocket.send(cred_text)
-#     response_str = await websocket.recv()
-#     # if "congratulation" in response_str:
-#     print(response_str)
 
 
 # 向服务器端发送认证后的消息
@@ -39,14 +28,10 @@ async def send_msg(websocket):
 
 # 客户端主逻辑
 async def main_logic():
-    async with websockets.connect('ws://localhost:5678') as websocket:
-        # await auth_system(websocket)
+    async with websockets.connect('ws://10.10.6.91:5678') as websocket:
+        await auth_system(websocket)
+
         await send_msg(websocket)
 
 
-def main():
-    asyncio.get_event_loop().run_until_complete(main_logic())
-
-
-if __name__ == "__main__":
-    main()
+asyncio.get_event_loop().run_until_complete(main_logic())

@@ -2,6 +2,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    background-color: black;
 }
 
 canvas {
@@ -9,7 +10,7 @@ canvas {
 }
 
 .p5Canvas {
-    margin: 0 auto;
+    margin: 200px auto;
 }
 
 .theBlank {
