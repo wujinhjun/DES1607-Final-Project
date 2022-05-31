@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>no</title>
+</head>
+<body>
+    <h1>B窗口页面</h1><br /><button onclick="begin()">开始监听</button>
+    <script>
+        function begin() {
+            window.addEventListener('message', function (event) {
+                if (event.origin !== 'http://127.0.0.1:5500') return;  //验证是否为当前域  保证安全
+                console.log("接收A窗口数据:" + event.data);
+                // console.log(event.origin);
+                window.opener.postMessage('你好,窗口', "http://127.0.0.1:5500");
+            }, false);
+        }
+    </script>
+</body>
+</html>

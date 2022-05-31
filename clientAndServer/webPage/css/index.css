@@ -21,7 +21,9 @@
     display: flex;
     align-items: center;
     justify-items: center;
-    margin: auto;
+    margin: 0 auto;
+    padding-top: 30px;
+
     /*text-align: center;*/
     /*vertical-align: center;*/
 }
@@ -30,4 +32,5 @@
     height: 100%;
     width: 100%;
     margin: 0 auto;
+    font-size: 60px;
 }

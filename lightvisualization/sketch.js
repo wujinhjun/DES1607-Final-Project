@@ -8,8 +8,7 @@ let wordIndex = 0;
 let bgColor = color(20, 100);
 let fontName = "Arial";
 let back = loadImage("./pic/back1.jpeg");
-// 打开一个 web socket
-const ws = new WebSocket("ws://localhost:5678");
+let wordsList = "";
 
 function setup() {
     createCanvas(1200, 300);
@@ -49,7 +48,9 @@ function draw() {
         }
     }
     // receive();
-
+    if (!wordsList) {
+        lis();
+    }
 }
 
 function mouseClicked() {
@@ -65,4 +66,15 @@ function mouseClicked() {
 
 }
 
-// webSocketTest();
+function lis() {
+    // console.log("进入监听");
+    window.addEventListener('message', function (event) {
+        if (event.origin !== "http://127.0.0.1:5500") {
+            return;
+        }
+        console.log('收到' + event.data);
+        // console.log(event.origin);
+        window.opener.postMessage('收到', "http://127.0.0.1:5500")
+        wordsList = event.data;
+    }, false);
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>父页面</title>
+</head>
+<body>
+<input name="ta" id="data" type="text" value="发送数据给子页面"/>
+<button onclick="send()" id="btn">post message to children</button>
+<div id="div" style="background: green;color: red;height: 30px"></div>
+<iframe src="http://127.0.0.1:5500/clientAndServer/py/someTest/fifth/son.html" name="postIframe"></iframe>
+ 
+<script>
+  function send() {
+    var data = document.getElementById('data').value
+    var url = location.origin
+    window.postIframe.postMessage(data,url); //发送数据
+  }
+ 
+//   window.onmessage = function(e){
+//     e = e || event;
+//     document.getElementById("div").innerHTML = e.data;
+//   }
+window.addEventListener("message", function(e){
+    document.getElementById("div").innerHTML = e.data;
+})
+</script>
+</body>
+</html>

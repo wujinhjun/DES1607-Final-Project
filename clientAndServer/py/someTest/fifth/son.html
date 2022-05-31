@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>子页面</title>
+</head>
+<body>
+<input name="ta" id="data" type="text" value="发送数据给父页面"/>
+<button onclick="send()" id="btn">post message to parent</button>
+<div id="div" style="height: 30px"></div>
+<script>
+  var origin
+  window.onmessage = function(e){
+    origin = e.origin
+    e = e || event;
+    document.getElementById("div").innerHTML = e.data;
+  }
+ 
+  function send() {
+    var data = document.getElementById('data').value
+    window.parent.postMessage(data, origin)
+  }
+</script>
+</body>
+</html>
