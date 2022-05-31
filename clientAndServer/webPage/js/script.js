@@ -1,12 +1,10 @@
 // 打开一个 web socket
 const ws = new WebSocket("ws://localhost:5678");
-// const sock = new WebSocket
 const sendButton = document.getElementById('send-btn');
-const openButton = document.getElementById('open-btn');
-// const wss = require("nodejs-websocket");
 
-// const port = 8001;
-// let mess = "";
+let openIf = false;
+let myWindow;
+
 function verify() {
     ws.onopen = function () {
         ws.send("wujinhjun:kaimozhenhao");
@@ -27,13 +25,16 @@ function receive() {
         if (received_msg.indexOf("sorry") === -1) {
             alert("收到信息： " + received_msg);
             console.log("发送给P5");
-
-            openNewPage(received_msg);
-            // post(received_msg);
-            // breadCast(received_msg);
-            // mess = received_msg;
+            let messageToP5 = trimWords(received_msg);
+            openNewPage(messageToP5);
+        //    现在传给它的还不是最终版本，还需要再处理一次
         }
     }
+}
+
+function trimWords(msg) {
+    let n = msg.split("#\n");
+    return n[2];
 }
 
 function closeCon() {
@@ -78,7 +79,6 @@ function clearText() {
     // console.log('clear');
 }
 
-
 function controlMessage(message) {
     sendButton.onclick = () => {
         const msg = textArea();
@@ -89,25 +89,18 @@ function controlMessage(message) {
 }
 
 function openNewPage(msg) {
-    let domain = 'http://127.0.0.1:5500/';
-    let thepage = "lightvisualization/index.html";
-    let strWindowFeatures = "width=600,height=600,menubar=yes,location=yes,resizable=yes,scrollbars=true,status=true,left=200,top=100";
-    let myWindow = window.open(domain + "lightvisualization/index.html", 'testWindow', strWindowFeatures);
+    if (!openIf) {
+        let domain = 'http://127.0.0.1:5500/';
+        let thepage = "lightvisualization/index.html";
+        let strWindowFeatures = "width=600,height=600,menubar=yes,location=yes,resizable=yes,scrollbars=true,status=true,left=200,top=100";
+        myWindow = window.open(domain + "lightvisualization/index.html", 'testWindow', strWindowFeatures);
+        openIf = true;
+    }
+
     myWindow.postMessage(msg, 'http://127.0.0.1:5500/lightvisualization/index.html');
-    console.log("post success");
-    // openButton.onclick = () => {
-    //
-    // }
     window.addEventListener('message', function (event) {
         console.log("接收成功： "+event.data);
     }, false);
 }
 
-// function post(msg) {
-//     let target = window.opener;
-//     let targetOrigin = "http://127.0.0.1:5500/lightvisualization/index.html";
-//     window.postMessage(msg, targetOrigin);
-//     console.log("post");
-// }
-// WebSocketTest();
 webSocketTest();

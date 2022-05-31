@@ -2,13 +2,13 @@ new p5();
 
 let particles = [];
 let pixelSteps = 9;
-let drawAsPoint = false;
+// let drawAsPoint = false;
 let words = [];
 let wordIndex = 0;
 let bgColor = color(20, 100);
 let fontName = "Arial";
 let back = loadImage("./pic/back1.jpeg");
-let wordsList = "";
+let wordsString = "";
 
 function setup() {
     createCanvas(1200, 300);
@@ -27,6 +27,7 @@ function setup() {
     words.push("蓦然回首");
     words.push("那人却在");
     words.push("灯火阑珊处");
+    words.push(" ");
 
     displayWord(words[wordIndex]);
 }
@@ -48,22 +49,42 @@ function draw() {
         }
     }
     // receive();
-    if (!wordsList) {
-        lis();
-    }
+    // if (!wordsString) {
+    //     lis();
+    //     console.log("调用");
+    // }
+    // controlPlay();
 }
+
+lis();
 
 function mouseClicked() {
 
-    console.log(particles);
-    if (mouseButton === LEFT) {
-        wordIndex += 1;
-        if (wordIndex > words.length - 1) {
-            wordIndex = 0;
-        }
-        displayWord(words[wordIndex]);
-    }
+    // console.log(wordsString);
+    // if (mouseButton === LEFT) {
+    //     if (wordIndex > words.length - 1) {
+    //         wordIndex = 0;
+    //     }
+    //     displayWord(words[wordIndex]);
+    //     wordIndex += 1;
+    // }
+    controlPlay();
 
+}
+
+function controlPlay() {
+    for (let i = 0; i < words.length; i++) {
+        // console.log(i);
+        setTimeout(function () {
+            // lll(i);
+            displayWord(words[i]);
+            console.log(i);
+        }, i * 5000);
+    }
+}
+
+function lll(i) {
+    console.log(i);
 }
 
 function lis() {
@@ -73,8 +94,28 @@ function lis() {
             return;
         }
         console.log('收到' + event.data);
+        wordsString = event.data;
+        dealListForPoem(wordsString);
         // console.log(event.origin);
         window.opener.postMessage('收到', "http://127.0.0.1:5500")
-        wordsList = event.data;
+
     }, false);
+}
+
+function dealListForPoem(str) {
+    // 利用正则表达式对诗词中的符号进行处理
+    let n = str.split(/，|。|、|\n/);
+    words = [];
+    console.log(n);
+    for (var i of n) {
+        i.trim();
+
+        if (i === "") {
+            continue
+        }
+        words.push(i);
+        // console.log(i);
+    }
+    words.push(" ");
+    // return wordTemp;
 }

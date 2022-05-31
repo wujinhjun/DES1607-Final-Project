@@ -35,9 +35,10 @@ async def recv_msg(websocket):
     while True:
         recv_text = await websocket.recv()
 
-        response_text = f"服务器收到: {recv_text}"
+        # response_text = f"服务器收到: {recv_text}"
         # 把信息发回
-        await websocket.send(search(recv_text))
+        response_text = search(recv_text)
+        await websocket.send(response_text)
 
 
 # 服务器端主逻辑
@@ -86,13 +87,22 @@ def search(word0):
     max_key2 = max(list7[max_key1], key=list7[max_key1].get)
 
     s = ""
+    poem = ""
     with open(os.path.join(file_path6, folders6[max_key1]), "r", encoding="utf-8") as f6:
         L2 = json.load(f6)
         s = L2[max_key2]["title"] + "\n" + L2[max_key2]["author"] + "\n"
 
         for i in range(0, len(L2[max_key2]["paragraphs"])):
             s = s + L2[max_key2]["paragraphs"][i] + "\n"
-        s = s + "关键词：" + "\n"
+        poem = s.split('\n', 2)[2];
+        # print(poem)
+        s = s + "#\n" + "关键词：" + "\n"
+    # splitWordsTemp = poem.split('')
+    # sympolsList = ['，', '。']
+    # for a in splitWordsTemp:
+    #     if a in sympolsList:
+    #         a = '。'
+
 
     with open(os.path.join(file_path7, folders7[max_key1]), "r", encoding="utf-8") as f0:
         L2 = json.load(f0)
@@ -104,8 +114,9 @@ def search(word0):
         for x in c:
             s = s + x + " "
         s = s + "\n"
-
-    return s
+    resp_temp = f"{s}#\n{poem}"
+    print(resp_temp)
+    return resp_temp
 
 
 def main():

@@ -31,8 +31,8 @@ function displayWord(word) {
     for (let i = 0; i < (width * height); i += pixelSteps) {
         coordsIndexes.push(i);
     }
-    console.log(`px: ${pg.pixels.length}`);
-    console.log(`cx: ${coordsIndexes.length}`);
+    // console.log(`px: ${pg.pixels.length}`);
+    // console.log(`cx: ${coordsIndexes.length}`);
 
     for (let i = 0; i < coordsIndexes.length; i++) {
         let randomIndex = int(random(0, coordsIndexes.length));

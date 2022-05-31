@@ -42,14 +42,14 @@ class Particle {
 
     display = () => {
         let currentColor = lerpColor(this.startColor, this.targetColor, this.colorWeight);
-        if (drawAsPoint) {
-            stroke(currentColor);
-            point(this.location.x, this.location.y);
-        } else {
-            noStroke();
-            fill(currentColor);
-            ellipse(this.location.x, this.location.y, this.particleSize, this.particleSize);
-        }
+        // if (drawAsPoint) {
+        //     stroke(currentColor);
+        //     point(this.location.x, this.location.y);
+        // } else {
+        noStroke();
+        fill(currentColor);
+        ellipse(this.location.x, this.location.y, this.particleSize, this.particleSize);
+        // }
 
         if (this.colorWeight < 1.0) {
             this.colorWeight = min(this.colorWeight + this.colorBlendRate, 1.0);
