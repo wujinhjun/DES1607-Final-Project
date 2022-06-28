@@ -19,8 +19,6 @@ function displayWord(word) {
     pg.textFont(fontName);
     pg.text(word, width / 2, height / 2);
     pg.loadPixels();
-    // let d = pg.pixelDensity();
-    // image(pg, 0, 0);
 
     let newColor = color(random(255), random(255), random(255));
 
@@ -31,8 +29,6 @@ function displayWord(word) {
     for (let i = 0; i < (width * height); i += pixelSteps) {
         coordsIndexes.push(i);
     }
-    // console.log(`px: ${pg.pixels.length}`);
-    // console.log(`cx: ${coordsIndexes.length}`);
 
     for (let i = 0; i < coordsIndexes.length; i++) {
         let randomIndex = int(random(0, coordsIndexes.length));

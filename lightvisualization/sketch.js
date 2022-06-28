@@ -2,7 +2,6 @@ new p5();
 
 let particles = [];
 let pixelSteps = 9;
-// let drawAsPoint = false;
 let words = [];
 let wordIndex = 0;
 let bgColor = color(20, 100);
@@ -33,7 +32,6 @@ function setup() {
 }
 
 function draw() {
-    // background(back);
     fill(bgColor);
     noStroke();
     rect(0, 0, width, height);
@@ -48,28 +46,12 @@ function draw() {
             }
         }
     }
-    // receive();
-    // if (!wordsString) {
-    //     lis();
-    //     console.log("调用");
-    // }
-    // controlPlay();
 }
 
 lis();
 
 function mouseClicked() {
-
-    // console.log(wordsString);
-    // if (mouseButton === LEFT) {
-    //     if (wordIndex > words.length - 1) {
-    //         wordIndex = 0;
-    //     }
-    //     displayWord(words[wordIndex]);
-    //     wordIndex += 1;
-    // }
     controlPlay();
-
 }
 
 function controlPlay() {
@@ -79,12 +61,8 @@ function controlPlay() {
             // lll(i);
             displayWord(words[i]);
             console.log(i);
-        }, i * 5000);
+        }, i * 6000);
     }
-}
-
-function lll(i) {
-    console.log(i);
 }
 
 function lis() {
@@ -113,6 +91,7 @@ function dealListForPoem(str) {
         if (i === "") {
             continue
         }
+
         words.push(i);
         // console.log(i);
     }

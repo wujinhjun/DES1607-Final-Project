@@ -1,4 +1,4 @@
-// 打开一个 web socket
+// 打开一个 websocket
 const ws = new WebSocket("ws://localhost:5678");
 const sendButton = document.getElementById('send-btn');
 
@@ -23,11 +23,12 @@ function receive() {
     ws.onmessage = function (evt) {
         let received_msg = evt.data;
         if (received_msg.indexOf("sorry") === -1) {
-            alert("收到信息： " + received_msg);
+            let temp = received_msg.split('#')[0];
+            alert("收到信息： \n" + temp);
             console.log("发送给P5");
             let messageToP5 = trimWords(received_msg);
             openNewPage(messageToP5);
-        //    现在传给它的还不是最终版本，还需要再处理一次
+            //    现在传给它的还不是最终版本，还需要再处理一次
         }
     }
 }
@@ -99,7 +100,7 @@ function openNewPage(msg) {
 
     myWindow.postMessage(msg, 'http://127.0.0.1:5500/lightvisualization/index.html');
     window.addEventListener('message', function (event) {
-        console.log("接收成功： "+event.data);
+        console.log("接收成功： " + event.data);
     }, false);
 }
 

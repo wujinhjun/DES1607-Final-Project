@@ -18,12 +18,12 @@ def main():
     mp_drawing_styles = mp.solutions.drawing_styles
     mp_pose = mp.solutions.pose
 
-    # cap = cv2.VideoCapture(0)
-    cap = cv2.VideoCapture("./test_1.mp4")
+    cap = cv2.VideoCapture(0)
+    # cap = cv2.VideoCapture("./test_1.mp4")
     x0, y0, x11, y11, x13, y13 = 0, 0, 0, 0, 0, 0
     dist_last, dist_temp = 0, 0
     com = "COM4"
-    # ser = serial.Serial(com, 9600)
+    ser = serial.Serial(com, 9600)
 
     with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
         while cap.isOpened():
@@ -85,7 +85,7 @@ def main():
                             comMsg = "upSteps#"
                         else:
                             comMsg = "downSteps#"
-                    # ser.write(comMsg.encode('utf-8'))
+                    ser.write(comMsg.encode('utf-8'))
                     print(comMsg)
             mp_drawing.draw_landmarks(
                 image,

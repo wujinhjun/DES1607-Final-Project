@@ -33,7 +33,6 @@ void servo_set_angle(int servo_id, uint8_t angle) {
     if (angle < 0 || angle > 180) {
         return;
     }
-
     pulse = 0.5 + angle / 90.0;
     servo_set_pulse(servo_id, pulse);
 }
@@ -54,11 +53,6 @@ void setup()
 
 void loop()
 {
-    // servo_set_angle(serve_0, 75);
-    // delay(1000);
-    // servo_set_angle(serve_0, 180);
-    // delay(1000);
-
     if (Serial.available() > 0) {
         items = Serial.readStringUntil('#');
         if (String(items).equals(String("left"))) {
@@ -81,8 +75,6 @@ void loop()
         }
         servo_set_angle(serve_0, serve_angle_0);
         stepper.step(steps);
-        // servo_set_angle(serve_1, serve_angle_1);
-        // println(items);
         Serial.println(items);
     }
     items = " ";

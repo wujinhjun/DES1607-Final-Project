@@ -42,7 +42,6 @@ async def recv_msg(websocket):
 
 
 # 服务器端主逻辑
-# websocket和path是该函数被回调时自动传过来的，不需要自己传
 async def main_logic(websocket, path):
     await check_permit(websocket)
 
@@ -94,15 +93,9 @@ def search(word0):
 
         for i in range(0, len(L2[max_key2]["paragraphs"])):
             s = s + L2[max_key2]["paragraphs"][i] + "\n"
-        poem = s.split('\n', 2)[2];
+        poem = s.split('\n', 2)[2]
         # print(poem)
         s = s + "#\n" + "关键词：" + "\n"
-    # splitWordsTemp = poem.split('')
-    # sympolsList = ['，', '。']
-    # for a in splitWordsTemp:
-    #     if a in sympolsList:
-    #         a = '。'
-
 
     with open(os.path.join(file_path7, folders7[max_key1]), "r", encoding="utf-8") as f0:
         L2 = json.load(f0)
@@ -139,6 +132,3 @@ if __name__ == "__main__":
 #
 # asyncio.get_event_loop().run_until_complete(start_server)
 # asyncio.get_event_loop().run_forever()
-
-
-# In[ ]:
