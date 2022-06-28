@@ -8,8 +8,9 @@
 
 ## 项目组成
 
-1. 数据查询部分
-2. 动作识别部分
-3. 机械驱动部分
-4. web部分
-5. 通信部分
+1. [信息输入端（客户端）](https://github.com/wujinhjun/DES1607-Final-Project/tree/main/clientAndServer/webPage): 简单的一个HTML页面
+2. [服务端](https://github.com/wujinhjun/DES1607-Final-Project/tree/main/clientAndServer/py): *python数据查询*， websocket通信
+3. [可视化](https://github.com/wujinhjun/DES1607-Final-Project/tree/main/lightvisualization): P5js框架
+4. [机构控制](https://github.com/wujinhjun/DES1607-Final-Project/tree/main/camAndArduino): mediapipe与Arduino
+
+注： 数据查询的部分是由我的partner做的
